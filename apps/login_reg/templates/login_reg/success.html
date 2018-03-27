@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="/logout">logout</a>
+    <h1>Hello, {{username}}!</h1>
+
+    <h3>Here is the List of Your friends</h3>
+    <div>
+      <table>
+        <thead>
+          <th>Username</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          {% for friend in my_friends %}
+          <tr>
+            <td>{{friend.username}}</td>
+            <td><a href="/user/{{friend.id}}">View Profile</a><a href="#">Remove Friend</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Other User's Not on Your Friend's List:</h3>
+    <div>
+      <table>
+        <thead>
+          <th>Username</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          {% for others in other_people %}
+          <tr>
+            <td><a href="/user/{{others.id}}">{{others.username}}</a></td>
+            <td><a href="/friend/add/{{others.id}}">Add ass Friend</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
