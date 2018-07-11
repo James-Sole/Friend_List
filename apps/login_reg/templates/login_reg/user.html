@@ -3,12 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D" crossorigin="anonymous"></script>
   </head>
   <body>
-    <a href="/logout">Logout</a>
-    <a href="/friends">Home</a>
-    <h1>{{username}}'s Profile</h1>
-    <p>Name: {{name}}</p>
-    <p>Email Adress:{{email}}</p>
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1"><h1>Hello, {{username}}!</h1></span>
+      <a class="btn btn-danger" href="/logout">logout</a>
+    </nav>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h1>{{username}}'s Profile</h1>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Name: {{name}}</h5>
+          <p class="card-text">Email Adress:{{email}}</p>
+          <a class="btn btn-warning" href="/friends">Home</a>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

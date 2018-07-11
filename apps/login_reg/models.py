@@ -27,12 +27,15 @@ class UserManager(models.Manager):
             errors['conf_password']= 'password should match confirmation password'
         if not EMAIL_REGEX.match(postData['email']):
             errors['email_re']= 'Invalid email'
+        print datetime.date.today
+        print postData['birth_date']
 
         return errors
     def login_validator(self,postData):
         errors = {}
-        user = User.objects.get(username= postData['username'])
-        if postData['username'] == user.username:
+        user = User.objects.filter(username= postData['username'])
+        if len(user)>0:
+            user = User.objects.get(username= postData['username'])
             password = user.password
             if not bcrypt.checkpw(postData['password'].encode(), password.encode()):
                 errors['password'] = 'Incorrect Password'

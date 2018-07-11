@@ -31,11 +31,14 @@ def register(request, methods = ['POST']):
 
 def friends(request):
     if 'id' in request.session:
+        friends = User.objects.filter(friends = request.session['id'])
         context = {
             'username' : User.objects.get(id =request.session['id']).username,
-            'my_friends': User.objects.filter(friends = request.session['id']),
+            'my_friends': friends,
 			'other_people': User.objects.exclude(friends = request.session['id']),
+            'friend_number': len(friends)
         }
+        print len(context['my_friends'])
         return render(request, "login_reg/success.html", context)
     return redirect('/')
 
@@ -51,14 +54,21 @@ def userId(request, id):
     return redirect('/')
 
 def Add(request, id):
-	#add relationship
-	user = User.objects.get( id=request.session['id'])
-	friend = User.objects.get(id = id)
-	friend.friends.add(user)
-	return redirect('/friends')
+    if 'id' in request.session:
+    	#add relationship
+    	user = User.objects.get( id=request.session['id'])
+    	friend = User.objects.get(id = id)
+    	friend.friends.add(user)
+    	return redirect('/friends')
+    return redirect('/')
 
 def Remove(request, id):
-	pass
+    if 'id' in request.session:
+        user = User.objects.get( id=request.session['id'])
+    	friend = User.objects.get(id = id)
+    	friend.friends.remove(user)
+    	return redirect('/friends')
+    return redirect('/')
 	#remove relationship
     #coundnt properly access the relationships table because i didnt know what it was named i oppedned my shell and tried all the names that seemed to match the named feild in my database
 
